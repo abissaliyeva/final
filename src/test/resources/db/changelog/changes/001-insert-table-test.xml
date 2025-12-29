@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd">
+
+    <changeSet id="001-insert-houses" author="arzn">
+        <insert tableName="houses">
+            <column name="name" value="Gryffindor"/>
+            <column name="founder" value="Godric Gryffindor"/>
+            <column name="points" valueNumeric="150"/>
+        </insert>
+
+        <insert tableName="houses">
+            <column name="name" value="Slytherin"/>
+            <column name="founder" value="Salazar Slytherin"/>
+            <column name="points" valueNumeric="130"/>
+        </insert>
+
+        <insert tableName="houses">
+            <column name="name" value="Ravenclaw"/>
+            <column name="founder" value="Rowena Ravenclaw"/>
+            <column name="points" valueNumeric="140"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="002-insert-users" author="arzn">
+        <insert tableName="users">
+            <column name="username" value="harry"/>
+            <column name="email" value="harry@hogwarts.com"/>
+            <column name="password" value="pass123"/>
+            <column name="role" value="STUDENT"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="house_id" valueNumeric="1"/>
+            <column name="created_at" valueDate="2024-01-01T10:00:00"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="username" value="snape"/>
+            <column name="email" value="snape@hogwarts.com"/>
+            <column name="password" value="pass123"/>
+            <column name="role" value="TEACHER"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="house_id" valueNumeric="2"/>
+            <column name="created_at" valueDate="2024-01-02T10:00:00"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="username" value="mcgonagall"/>
+            <column name="email" value="mcgonagall@hogwarts.com"/>
+            <column name="password" value="pass123"/>
+            <column name="role" value="TEACHER"/>
+            <column name="enabled" valueBoolean="true"/>
+            <column name="house_id" valueNumeric="1"/>
+            <column name="created_at" valueDate="2024-01-03T10:00:00"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="003-insert-subjects" author="arzn">
+        <insert tableName="subjects">
+            <column name="name" value="Potions"/>
+            <column name="description" value="Potion making"/>
+            <column name="teacher_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="subjects">
+            <column name="name" value="Transfiguration"/>
+            <column name="description" value="Magic transformations"/>
+            <column name="teacher_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="subjects">
+            <column name="name" value="Defense Against Dark Arts"/>
+            <column name="description" value="Defense spells"/>
+            <column name="teacher_id" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="004-insert-lessons" author="arzn">
+        <insert tableName="lessons">
+            <column name="topic" value="Basic Potions"/>
+            <column name="subject_id" valueNumeric="1"/>
+            <column name="teacher_id" valueNumeric="2"/>
+            <column name="date_time" valueDate="2024-02-01T09:00:00"/>
+            <column name="classroom" value="Dungeon"/>
+        </insert>
+
+        <insert tableName="lessons">
+            <column name="topic" value="Animal Transfiguration"/>
+            <column name="subject_id" valueNumeric="2"/>
+            <column name="teacher_id" valueNumeric="3"/>
+            <column name="date_time" valueDate="2024-02-02T10:00:00"/>
+            <column name="classroom" value="Room 12"/>
+        </insert>
+
+        <insert tableName="lessons">
+            <column name="topic" value="Shield Spells"/>
+            <column name="subject_id" valueNumeric="3"/>
+            <column name="teacher_id" valueNumeric="3"/>
+            <column name="date_time" valueDate="2024-02-03T11:00:00"/>
+            <column name="classroom" value="Room 7"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="005-insert-grades" author="arzn">
+        <insert tableName="grades">
+            <column name="value" value="A"/>
+            <column name="student_id" valueNumeric="1"/>
+            <column name="subject_id" valueNumeric="1"/>
+            <column name="lesson_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="grades">
+            <column name="value" value="B"/>
+            <column name="student_id" valueNumeric="1"/>
+            <column name="subject_id" valueNumeric="2"/>
+            <column name="lesson_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="grades">
+            <column name="value" value="A+" />
+            <column name="student_id" valueNumeric="1"/>
+            <column name="subject_id" valueNumeric="3"/>
+            <column name="lesson_id" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>
