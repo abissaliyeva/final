@@ -18,7 +18,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        // FOR STUDY PROJECT ONLY
         return NoOpPasswordEncoder.getInstance();
     }
 
@@ -29,7 +28,6 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(authorize -> authorize
 
-                        /* ---------- PUBLIC ---------- */
                         .requestMatchers(
                                 "/",
                                 "/login",
@@ -39,35 +37,28 @@ public class SecurityConfig {
                                 "/images/**"
                         ).permitAll()
 
-                        /* ---------- ADMIN ---------- */
                         .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/houses/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/subjects/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/api/users/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/**").hasAuthority("ROLE_ADMIN")
 
-                        /* ---------- TEACHER ---------- */
                         .requestMatchers("/teacher/**").hasAuthority("ROLE_TEACHER")
                         .requestMatchers("/api/lessons/**").hasAuthority("ROLE_TEACHER")
                         .requestMatchers("/api/grades/assign").hasAuthority("ROLE_TEACHER")
 
-                        /* ---------- STUDENT ---------- */
                         .requestMatchers("/student/**").hasAuthority("ROLE_STUDENT")
                         .requestMatchers("/api/grades/my").hasAuthority("ROLE_STUDENT")
 
-                        /* ---------- AUTHENTICATED ---------- */
                         .requestMatchers("/profile").authenticated()
 
                         .anyRequest().authenticated()
                 )
-                /* ---------- LOGOUT ---------- */
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .deleteCookies("JSESSIONID")
                 )
-
-                /* ---------- ACCESS DENIED ---------- */
                 .exceptionHandling(exception -> exception
                         .accessDeniedPage("/login?accessDenied")
                 );
