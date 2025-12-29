@@ -18,13 +18,11 @@ public class UserController {
 
     private final UserService userService;
 
-    /* ---------- PUBLIC REGISTRATION ---------- */
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRequestDto request) {
         return userService.register(request);
     }
 
-    /* ---------- ADMIN ---------- */
     @GetMapping
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<UserResponseDto> getAllUsers() {
@@ -43,7 +41,6 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-    /* ---------- AUTHENTICATED USER ---------- */
     @PutMapping("/profile")
     @PreAuthorize("isAuthenticated()")
     public UserResponseDto updateOwnProfile(
